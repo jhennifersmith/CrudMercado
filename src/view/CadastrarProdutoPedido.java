@@ -60,42 +60,42 @@ public class CadastrarProdutoPedido {
 		panel.setLayout(null);
 
 		JLabel lblCadastroProdutoPedido = new JLabel("Cadastro Produto Pedido");
-		lblCadastroProdutoPedido.setBounds(10, 0, 192, 34);
+		lblCadastroProdutoPedido.setBounds(130, 11, 192, 34);
 		panel.add(lblCadastroProdutoPedido);
 
 		JLabel lblIdProdutoPedido = new JLabel("Digite o id do produto pedido:");
-		lblIdProdutoPedido.setBounds(10, 38, 150, 14);
+		lblIdProdutoPedido.setBounds(31, 60, 150, 14);
 		panel.add(lblIdProdutoPedido);
 
 		inputId = new JTextField();
-		inputId.setBounds(10, 56, 139, 20);
+		inputId.setBounds(31, 85, 139, 20);
 		panel.add(inputId);
 		inputId.setColumns(10);
 
 		JLabel lblIdPedido = new JLabel("Digite o Id do Pedido:");
-		lblIdPedido.setBounds(10, 87, 139, 14);
+		lblIdPedido.setBounds(31, 124, 139, 14);
 		panel.add(lblIdPedido);
 
 		inputIdPedido = new JTextField();
-		inputIdPedido.setBounds(10, 108, 139, 20);
+		inputIdPedido.setBounds(32, 149, 139, 20);
 		panel.add(inputIdPedido);
 		inputIdPedido.setColumns(10);
 
 		JLabel lblIdProduto = new JLabel("Digite o id do produto:");
-		lblIdProduto.setBounds(218, 39, 139, 14);
+		lblIdProduto.setBounds(229, 60, 139, 14);
 		panel.add(lblIdProduto);
 
 		inputIdProduto = new JTextField();
-		inputIdProduto.setBounds(218, 61, 139, 20);
+		inputIdProduto.setBounds(229, 85, 139, 20);
 		panel.add(inputIdProduto);
 		inputIdProduto.setColumns(10);
 
 		JLabel lblQuantidade = new JLabel("Digite a quantidade: ");
-		lblQuantidade.setBounds(218, 91, 150, 14);
+		lblQuantidade.setBounds(229, 124, 150, 14);
 		panel.add(lblQuantidade);
 
 		inputQuantidade = new JTextField();
-		inputQuantidade.setBounds(218, 108, 139, 20);
+		inputQuantidade.setBounds(229, 149, 139, 20);
 		panel.add(inputQuantidade);
 		inputQuantidade.setColumns(10);
 
@@ -113,11 +113,11 @@ public class CadastrarProdutoPedido {
 				frame.dispose();
 			}
 		});
-		btnCadastrar.setBounds(10, 143, 89, 23);
+		btnCadastrar.setBounds(42, 190, 110, 23);
 		panel.add(btnCadastrar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(132, 143, 89, 23);
+		btnVoltar.setBounds(239, 190, 110, 23);
 		panel.add(btnVoltar);
 
 	}
