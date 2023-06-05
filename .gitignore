@@ -1,0 +1,42 @@
+# Arquivos compilados
+*.class
+
+# Pacote de saída do Eclipse
+bin/
+
+# Arquivos JAR
+*.jar
+
+# Arquivos WAR
+*.war
+
+# Diretório de dependências do Maven
+target/
+
+# Diretório de dependências do Gradle
+build/
+
+# Arquivos de configuração do IDE Eclipse
+.metadata/
+
+# Arquivos de configuração do IntelliJ IDEA
+.idea/
+
+# Arquivos de configuração do NetBeans
+nbproject/
+
+# Logs
+*.log
+
+# Arquivos de backup
+*~
+
+# Diretório de saída de relatórios de cobertura de código
+cobertura/
+
+# Diretório de saída de relatórios de testes
+test-output/
+
+# Arquivos de configuração específicos do sistema operacional
+.DS_Store
+Thumbs.db

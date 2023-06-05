@@ -51,7 +51,7 @@ public class TelaCadastrarPedido {
 		frame = new JFrame();
 		frame.setTitle("Cadastro de Pedido");
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -64,36 +64,32 @@ public class TelaCadastrarPedido {
 		panel.add(lblCadastroPedido);
 
 		JLabel lblIdFuncionario = new JLabel("Digite o id do funcionário:");
-		lblIdFuncionario.setBounds(10, 88, 150, 14);
+		lblIdFuncionario.setBounds(10, 32, 150, 14);
 		panel.add(lblIdFuncionario);
 
 		inputIdFuncionario = new JTextField();
-		inputIdFuncionario.setBounds(10, 109, 139, 20);
+		inputIdFuncionario.setBounds(10, 57, 139, 20);
 		panel.add(inputIdFuncionario);
 		inputIdFuncionario.setColumns(10);
 
-		JLabel lblIdCliente = new JLabel("Digite o Id do Cliente:");
-		lblIdCliente.setBounds(10, 140, 139, 14);
+		JLabel lblIdCliente = new JLabel("Digite o id do Cliente:");
+		lblIdCliente.setBounds(10, 88, 139, 14);
 		panel.add(lblIdCliente);
 
 		inputIdCliente = new JTextField();
-		inputIdCliente.setBounds(10, 165, 139, 20);
+		inputIdCliente.setBounds(10, 113, 139, 20);
 		panel.add(inputIdCliente);
 		inputIdCliente.setColumns(10);
-
-		JLabel lblIdPedido = new JLabel("Digite o id do pedido:");
-		lblIdPedido.setBounds(10, 41, 150, 14);
-		panel.add(lblIdPedido);
 
 		inputIdPedido = new JTextField();
 		inputIdPedido.setColumns(10);
 		inputIdPedido.setBounds(10, 57, 139, 20);
-		panel.add(inputIdPedido);
+		panel.add(inputIdPedido).setVisible(false);;
 
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int idPedido = Integer.parseInt(inputIdPedido.getText());
+				int idPedido = 0;
 				Float valorTotal = (float) 0;
 				LocalDate dataPedido = LocalDate.now();
 				int idCliente = Integer.parseInt(inputIdCliente.getText());
@@ -104,12 +100,12 @@ public class TelaCadastrarPedido {
 				frame.dispose();
 			}
 		});
-		btnCadastrar.setBounds(10, 196, 89, 23);
+		btnCadastrar.setBounds(10, 156, 139, 23);
 		panel.add(btnCadastrar);
-
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(156, 196, 89, 23);
-		panel.add(btnVoltar);
+	}
+	
+	public JFrame getFrame() {
+		return frame;
 	}
 
 }
