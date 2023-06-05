@@ -51,7 +51,7 @@ public class TelaCadastroProduto {
 		frame = new JFrame();
 		frame.setTitle("Cadastro de Produto");
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -63,13 +63,9 @@ public class TelaCadastroProduto {
 		lblCadastroProduto.setBounds(10, 0, 108, 34);
 		panel.add(lblCadastroProduto);
 
-		JLabel lblIdProduto = new JLabel("Digite o id do produto:");
-		lblIdProduto.setBounds(10, 38, 150, 14);
-		panel.add(lblIdProduto);
-
 		inputId = new JTextField();
 		inputId.setBounds(10, 56, 139, 20);
-		panel.add(inputId);
+		panel.add(inputId).setVisible(false);;
 		inputId.setColumns(10);
 
 		JLabel lblDescricao = new JLabel("Digite a descrição:");
@@ -82,11 +78,11 @@ public class TelaCadastroProduto {
 		inputDesc.setColumns(10);
 
 		JLabel lblCodBarras = new JLabel("Digite o código de barras:");
-		lblCodBarras.setBounds(217, 33, 128, 14);
+		lblCodBarras.setBounds(10, 34, 128, 14);
 		panel.add(lblCodBarras);
 
 		inputCodBarras = new JTextField();
-		inputCodBarras.setBounds(217, 56, 139, 20);
+		inputCodBarras.setBounds(10, 56, 139, 20);
 		panel.add(inputCodBarras);
 		inputCodBarras.setColumns(10);
 
@@ -102,7 +98,7 @@ public class TelaCadastroProduto {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int idProduto = Integer.parseInt(inputId.getText());
+				int idProduto = 0;
 				String descricao = inputDesc.getText();
 				String codBarras = inputCodBarras.getText();
 				Float preco = Float.parseFloat(inputPreco.getText());
@@ -115,9 +111,9 @@ public class TelaCadastroProduto {
 		btnCadastrar.setBounds(10, 143, 89, 23);
 		panel.add(btnCadastrar);
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(132, 143, 89, 23);
-		panel.add(btnVoltar);
+	}
 
+	public JFrame getFrame() {
+		return frame;
 	}
 }

@@ -17,9 +17,9 @@ public class CadastrarProdutoPedido {
 
 	private JFrame frame;
 	private JTextField inputId;
-	private JTextField inputIdPedido;
 	private JTextField inputIdProduto;
 	private JTextField inputQuantidade;
+	private JTextField txtIdPedido;
 
 	/**
 	 * Launch the application.
@@ -36,6 +36,14 @@ public class CadastrarProdutoPedido {
 			}
 		});
 	}
+	
+	public JTextField getTxtIdPedido() {
+		return txtIdPedido;
+	}
+
+	public void setTxtIdPedido(String txtIdPedido) {
+		this.txtIdPedido.setText(txtIdPedido);
+	}
 
 	/**
 	 * Create the application.
@@ -51,7 +59,7 @@ public class CadastrarProdutoPedido {
 		frame = new JFrame();
 		frame.setTitle("Cadastro de Produto Pedido");
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -59,51 +67,48 @@ public class CadastrarProdutoPedido {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lblCadastroProdutoPedido = new JLabel("Cadastro Produto Pedido");
-		lblCadastroProdutoPedido.setBounds(130, 11, 192, 34);
+		JLabel lblCadastroProdutoPedido = new JLabel("Cadastro  de produto no pedido");
+		lblCadastroProdutoPedido.setBounds(107, 11, 264, 34);
 		panel.add(lblCadastroProdutoPedido);
-
-		JLabel lblIdProdutoPedido = new JLabel("Digite o id do produto pedido:");
-		lblIdProdutoPedido.setBounds(31, 60, 150, 14);
-		panel.add(lblIdProdutoPedido);
 
 		inputId = new JTextField();
 		inputId.setBounds(31, 85, 139, 20);
-		panel.add(inputId);
+		panel.add(inputId).setVisible(false);;
 		inputId.setColumns(10);
 
-		JLabel lblIdPedido = new JLabel("Digite o Id do Pedido:");
-		lblIdPedido.setBounds(31, 124, 139, 14);
+		JLabel lblIdPedido = new JLabel("Id do pedido:");
+		lblIdPedido.setBounds(20, 124, 139, 14);
 		panel.add(lblIdPedido);
 
-		inputIdPedido = new JTextField();
-		inputIdPedido.setBounds(32, 149, 139, 20);
-		panel.add(inputIdPedido);
-		inputIdPedido.setColumns(10);
+		txtIdPedido = new JTextField();
+		txtIdPedido.setEditable(false);
+		txtIdPedido.setBounds(20, 149, 139, 20);
+		panel.add(txtIdPedido);
+		txtIdPedido.setColumns(10);
 
 		JLabel lblIdProduto = new JLabel("Digite o id do produto:");
-		lblIdProduto.setBounds(229, 60, 139, 14);
+		lblIdProduto.setBounds(20, 56, 139, 14);
 		panel.add(lblIdProduto);
 
 		inputIdProduto = new JTextField();
-		inputIdProduto.setBounds(229, 85, 139, 20);
+		inputIdProduto.setBounds(20, 81, 139, 20);
 		panel.add(inputIdProduto);
 		inputIdProduto.setColumns(10);
 
 		JLabel lblQuantidade = new JLabel("Digite a quantidade: ");
-		lblQuantidade.setBounds(229, 124, 150, 14);
+		lblQuantidade.setBounds(218, 56, 150, 14);
 		panel.add(lblQuantidade);
 
 		inputQuantidade = new JTextField();
-		inputQuantidade.setBounds(229, 149, 139, 20);
+		inputQuantidade.setBounds(204, 81, 139, 20);
 		panel.add(inputQuantidade);
 		inputQuantidade.setColumns(10);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int idProdutoPedido = Integer.parseInt(inputId.getText());
-				int idPedido = Integer.parseInt(inputIdPedido.getText());
+				int idProdutoPedido = 0;
+				int idPedido = Integer.parseInt(txtIdPedido.getText());
 				int idProduto = Integer.parseInt(inputIdProduto.getText());
 				int quantidade = Integer.parseInt(inputQuantidade.getText());
 				Float precoCotado = (float) 0;
@@ -113,13 +118,13 @@ public class CadastrarProdutoPedido {
 				frame.dispose();
 			}
 		});
-		btnCadastrar.setBounds(42, 190, 110, 23);
+		btnCadastrar.setBounds(146, 191, 110, 23);
 		panel.add(btnCadastrar);
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(239, 190, 110, 23);
-		panel.add(btnVoltar);
-
+	}
+	
+	public JFrame getFrame() {
+		return frame;
 	}
 
 }

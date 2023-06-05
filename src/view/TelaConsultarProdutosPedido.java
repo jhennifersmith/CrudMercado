@@ -13,13 +13,13 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import dao.PedidoDAO;
-import dominio.Pedido;
+import dao.ProdutoPedidoDAO;
+import dominio.ProdutoPedido;
 
-public class TelaConsultaPedido {
+public class TelaConsultarProdutosPedido {
 
 	private JFrame frame;
-	private JTextField txtId = null;
+	private JTextField txtIdPedido;
 	private JTable table;
 
 	/**
@@ -29,7 +29,7 @@ public class TelaConsultaPedido {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaConsultaPedido window = new TelaConsultaPedido();
+					TelaConsultarProdutosPedido window = new TelaConsultarProdutosPedido();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,36 +41,40 @@ public class TelaConsultaPedido {
 	/**
 	 * Create the application.
 	 */
-	public TelaConsultaPedido() {
+	public TelaConsultarProdutosPedido() {
 		initialize();
+	}
+	
+	public JTextField getTxtIdPedido() {
+		return txtIdPedido;
+	}
+
+	public void setTxtIdPedido(String txtIdPedido) {
+		this.txtIdPedido.setText(txtIdPedido);
 	}
 
 	private void atualizaBusca() {
-		PedidoDAO pd = new PedidoDAO();
-		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
+		ProdutoPedidoDAO pd = new ProdutoPedidoDAO();
+		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.setNumRows(0);
-		if (!txtId.getText().isEmpty()) {
-			for(Pedido p: pd.ConsultarPorId(Integer.parseInt(txtId.getText()))) {
-				modelo.addRow(new Object[] {
-						p.getId(),
-						p.getIdCliente(),
-						p.getIdFuncionario(),
-						p.getValorTotal()
-				});
+		if (!txtIdPedido.getText().isEmpty()) {
+			for (ProdutoPedido pp : pd.ConsultarPorId(Integer.parseInt(txtIdPedido.getText()))) {
+				modelo.addRow(new Object[] { pp.getId(), pp.getIdPedido(), pp.getIdProduto(), pp.getPrecoCotado(),
+						pp.getQuantidade() });
 			}
-		}
-		else {
+		} else {
 			buscaTodos();
 		}
 
 	}
 
 	private void buscaTodos() {
-		PedidoDAO pd = new PedidoDAO();
+		ProdutoPedidoDAO ppd = new ProdutoPedidoDAO();
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.setNumRows(0);
-		for (Pedido p : pd.Read()) {
-			modelo.addRow(new Object[] { p.getId(), p.getIdCliente(), p.getIdFuncionario(), p.getValorTotal() });
+		for (ProdutoPedido pp : ppd.Read()) {
+			modelo.addRow(new Object[] { pp.getId(), pp.getIdPedido(), pp.getIdProduto(), pp.getPrecoCotado(),
+					pp.getQuantidade() });
 		}
 	}
 
@@ -89,13 +93,13 @@ public class TelaConsultaPedido {
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Id do pedido:");
-		lblNewLabel.setBounds(10, 24, 119, 14);
+		lblNewLabel.setBounds(10, 24, 67, 14);
 		panel.add(lblNewLabel);
 
-		txtId = new JTextField();
-		txtId.setBounds(139, 21, 285, 20);
-		panel.add(txtId);
-		txtId.setColumns(10);
+		txtIdPedido = new JTextField();
+		txtIdPedido.setBounds(87, 21, 337, 20);
+		panel.add(txtIdPedido);
+		txtIdPedido.setColumns(10);
 
 		JButton btnBuscaPorId = new JButton("Filtrar");
 		btnBuscaPorId.addActionListener(new ActionListener() {
@@ -117,52 +121,44 @@ public class TelaConsultaPedido {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null }, },
-				new String[] { "Id", "Id Cliente", "Id Funcionario", "Valor Total" }));
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
+				new String[] { "Id", "Id Pedido", "Id Produto", "Preço Cotado", "Quantidade" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(112);
 		table.setAutoCreateRowSorter(true);
-
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int id = (int) table.getValueAt(table.getSelectedRow(), 0);
-				PedidoDAO pd = new PedidoDAO();
-				pd.excluir(id);
-				buscaTodos();
-			}
-		});
-		btnExcluir.setBounds(335, 183, 89, 23);
-		panel_1.add(btnExcluir);
 
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = (int) table.getValueAt(table.getSelectedRow(), 0);
-				int idCliente = (int) table.getValueAt(table.getSelectedRow(), 1);
-				int idFuncionario = (int) table.getValueAt(table.getSelectedRow(), 2);
-				TelaAlterarPedido ta = new TelaAlterarPedido();
+				int idPedido = (int) table.getValueAt(table.getSelectedRow(), 1);
+				int idProduto = (int) table.getValueAt(table.getSelectedRow(), 2);
+				Float valorCotado = (float) table.getValueAt(table.getSelectedRow(), 3);
+				int quantidade = (int) table.getValueAt(table.getSelectedRow(), 4);
+				TelaAlterarProdutoPedido ta = new TelaAlterarProdutoPedido();
 				ta.setTextId(Integer.toString(id));
-				ta.setTextIdFuncionario(Integer.toString(idCliente));
-				ta.setTextIdCliente(Integer.toString(idFuncionario));
+				ta.setTxtIdPedido(Integer.toString(idPedido));
+				ta.setTxtIdProduto(Integer.toString(idProduto));
+				ta.setTxtValorCotado(Float.toString(valorCotado));
+				ta.setTxtQuantidade(Integer.toString(quantidade));
 				ta.getFrmTelaAlterar().setVisible(true);
 
 			}
 		});
-		btnAlterar.setBounds(236, 183, 89, 23);
+		btnAlterar.setBounds(335, 183, 89, 23);
 		panel_1.add(btnAlterar);
 		
-		JButton btnAlterarProdutos = new JButton("Alterar produtos do pedido");
-		btnAlterarProdutos.addActionListener(new ActionListener() {
+		JButton btnCadastrarProdutos = new JButton("Cadastrar Produtos");
+		btnCadastrarProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id = (int) table.getValueAt(table.getSelectedRow(), 0);
-				TelaConsultarProdutosPedido taa = new TelaConsultarProdutosPedido();
-				taa.setTxtIdPedido(Integer.toString(id));
-				taa.getFrame().setVisible(true);
+				CadastrarProdutoPedido ta = new CadastrarProdutoPedido();
+				ta.setTxtIdPedido(txtIdPedido.getText());
+				ta.getFrame().setVisible(true);
 
 			}
 		});
-		btnAlterarProdutos.setBounds(20, 183, 188, 23);
-		panel_1.add(btnAlterarProdutos);
+		btnCadastrarProdutos.setBounds(20, 183, 175, 23);
+		panel_1.add(btnCadastrarProdutos);
+
 	}
 
 	public JFrame getFrame() {

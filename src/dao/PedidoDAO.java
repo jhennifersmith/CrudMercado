@@ -47,9 +47,7 @@ public class PedidoDAO extends Produto {
 		public ArrayList<Pedido> Read(){
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
-			String sql = "SELECT * FROM tb_pedido" 
-					+ " INNER JOIN tb_produto_pedido on tb_pedido.id_pedido = tb_produto_pedido.id_pedido "
-					+ " INNER JOIN tb_produto on tb_produto_pedido.id_produto = tb_produto.id_produto ";
+			String sql = "SELECT  * FROM tb_pedido" ;
 			ArrayList<Pedido> pedidos = new ArrayList<>();
 			try {
 				stmt = con.prepareStatement(sql);
@@ -99,16 +97,34 @@ public class PedidoDAO extends Produto {
 		//Operação de delete (exclusão)
 		public void excluir(int id) {
 			PreparedStatement stmt = null;
-			String sql = "DELETE FROM tb_pedido WHERE id_pedido = ?";
+			String sql = "DELETE FROM tb_produto_pedido WHERE id_pedido = ?";
 			try {
-				int confirma = JOptionPane.showConfirmDialog(null, "Confirma a exclusão?", 
+				int confirma = JOptionPane.showConfirmDialog(null, "Confirma a exclusão dos produtos?", 
 						"Selecione uma opção", JOptionPane.YES_NO_OPTION);
 				
 				if(confirma == 0) {
 					stmt = con.prepareStatement(sql);
 					stmt.setInt(1, id);
 					stmt.executeUpdate();
-					JOptionPane.showMessageDialog(null, "Dado excluído com sucesso!");
+					JOptionPane.showMessageDialog(null, "Produtos excluidos com sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Operação cancelada!");
+				}
+				
+			}catch(SQLException ex) {
+				JOptionPane.showMessageDialog(null, "Erro ao excluir: "+ex.getMessage() + "Código lido: " + id);
+			}
+			PreparedStatement stmt2 = null;
+			String sql2 = "DELETE FROM tb_pedido WHERE id_pedido = ?";
+			try {
+				int confirma = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do pedido?", 
+						"Selecione uma opção", JOptionPane.YES_NO_OPTION);
+				
+				if(confirma == 0) {
+					stmt2 = con.prepareStatement(sql2);
+					stmt2.setInt(1, id);
+					stmt2.executeUpdate();
+					JOptionPane.showMessageDialog(null, "Pedido excluído com sucesso!");
 				} else {
 					JOptionPane.showMessageDialog(null, "Operação cancelada!");
 				}
@@ -121,7 +137,7 @@ public class PedidoDAO extends Produto {
 		//Método update
 		public void Alterar(Pedido p) {
 			PreparedStatement stmt;
-			String sql = "UPDATE tb_pedido SET id_cliente = ?, id_funcionario = ? WHERE id_produto = ?";
+			String sql = "UPDATE tb_pedido SET id_cliente = ?, id_funcionario = ? WHERE id_pedido = ?";
 			try {
 				stmt = con.prepareStatement(sql);
 				stmt.setInt(1, p.getIdCliente());
