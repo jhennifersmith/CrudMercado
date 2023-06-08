@@ -15,15 +15,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import dao.FuncionarioDAO;
-import dominio.Funcionario;
+import dao.LoginDAO;
+import dominio.Login;
 
-public class TelaConsultaFuncionario {
+public class TelaConsultaLogin {
 
-	private JFrame frmConsultaFuncionario;
+	private JFrame frmConsultaLogin;
 	private JTextField txtDesc;
 	private JTable table;
 	
+
 	/**
 	 * Launch the application.
 	 */
@@ -31,8 +32,8 @@ public class TelaConsultaFuncionario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaConsultaFuncionario window = new TelaConsultaFuncionario();
-					window.frmConsultaFuncionario.setVisible(true);
+					TelaConsultaLogin window = new TelaConsultaLogin();
+					window.frmConsultaLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,41 +44,39 @@ public class TelaConsultaFuncionario {
 	/**
 	 * Create the application.
 	 */
-	public TelaConsultaFuncionario() {
+	public TelaConsultaLogin() {
 		initialize();
 	}
-	
+
 	private void atualizaBusca() {
-		FuncionarioDAO fd = new FuncionarioDAO();
+		LoginDAO ld = new LoginDAO();
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
 		modelo.setNumRows(0);
-		for(Funcionario f: fd.ConsultarPorDescricao(txtDesc.getText())) {
+		for(Login l: ld.ConsultarPorDescricao(txtDesc.getText())) {
 			modelo.addRow(new Object[] {
-					f.getIdFuncionario(),
-					f.getNome(),
-					f.getSalario(),
-					f.getComissao()
+					l.getId(),
+					l.getUsername(),
+					l.getSenha(),
 			});
 		}
 	}
 
-
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of thefrmConsultaLogin.
 	 */
 	private void initialize() {
-		frmConsultaFuncionario = new JFrame();
-		frmConsultaFuncionario.setTitle("Ações em Funcionario");
-		frmConsultaFuncionario.getContentPane().setBackground(new Color(128, 128, 255));
-		frmConsultaFuncionario.setBackground(new Color(128, 128, 255));
-		frmConsultaFuncionario.setBounds(100, 100, 463, 354);
-		frmConsultaFuncionario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmConsultaFuncionario.getContentPane().setLayout(null);
+		frmConsultaLogin = new JFrame();
+		frmConsultaLogin.setTitle("Ações em Login");
+		frmConsultaLogin.getContentPane().setBackground(new Color(128, 128, 255));
+		frmConsultaLogin.setBackground(new Color(128, 128, 255));
+		frmConsultaLogin.setBounds(100, 100, 463, 354);
+		frmConsultaLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmConsultaLogin.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(10, 10, 434, 65);
-		frmConsultaFuncionario.getContentPane().add(panel);
+		frmConsultaLogin.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblDesc = new JLabel("Informe o nome:");
@@ -99,44 +98,38 @@ public class TelaConsultaFuncionario {
 		txtDesc = new JTextField();
 		txtDesc.setBounds(10, 34, 292, 26);
 		panel.add(txtDesc);
-		
-		txtDesc = new JTextField();
-		txtDesc.setColumns(10);
-		txtDesc.setBounds(10, 34, 292, 26);
-		panel.add(txtDesc);
 		txtDesc.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(128, 128, 255));
 		panel_1.setBounds(10, 90, 434, 217);
-		frmConsultaFuncionario.getContentPane().add(panel_1);
+		frmConsultaLogin.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 10, 414, 163);
+		scrollPane.setBounds(10, 0, 414, 163);
 		panel_1.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
+				{null, null},
 			},
 			new String[] {
-				"Id Funcionario", "Nome", "Salario", "Comissao"
+				"Id Login", "Username"
 			}
 		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(112);
 		table.setAutoCreateRowSorter(true);
 		
-		
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id =  (int) table.getValueAt(table.getSelectedRow(), 0);
-				FuncionarioDAO pd = new FuncionarioDAO();
-				pd.excluir(id);
+				int id =  (int) table.getValueAt(table.getSelectedRow(),0);
+				LoginDAO ld = new LoginDAO();
+				ld.excluir(id);
 				atualizaBusca();
 			}
 		});
@@ -148,17 +141,13 @@ public class TelaConsultaFuncionario {
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = (Integer)table.getValueAt(table.getSelectedRow(), 0);
-				String nome = (String)table.getValueAt(table.getSelectedRow(), 1);
-				Float salario = (Float)table.getValueAt(table.getSelectedRow(), 2);
-				Float comissao = (Float)table.getValueAt(table.getSelectedRow(), 3);
+				String username = (String)table.getValueAt(table.getSelectedRow(), 1);
 				
-				TelaAlterarFuncionario ta = new TelaAlterarFuncionario();
-				ta.setTxtIdFuncionario(Integer.toString(id));
-				ta.setTxtNome(nome);
-				ta.setTxtSalario(salario.toString());
-				ta.setTxtComissao(comissao.toString());
+				TelaAlterarLogin tac = new TelaAlterarLogin();
+				tac.setTxtIdLogin(Integer.toString(id));
+				tac.setTxtUsername(username);
 				
-				ta.getFrmTelaAlterar().setVisible(true);
+				tac.getFrmTelaAlterar().setVisible(true);
 				
 			}
 		});
@@ -166,8 +155,8 @@ public class TelaConsultaFuncionario {
 		panel_1.add(btnAlterar);
 	}
 
-	public JFrame getFrmConsultaFuncionario() {
-		return frmConsultaFuncionario;
+	public JFrame getFrmConsultaLogin() {
+		return frmConsultaLogin;
 	}
 }
 

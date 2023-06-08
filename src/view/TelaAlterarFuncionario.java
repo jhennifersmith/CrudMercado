@@ -53,15 +53,19 @@ public class TelaAlterarFuncionario {
 	}
 
 	public void setTxtSalario(String txtSalario) {
-		this.txtSalario.setText(txtSalario);;
+	//	String texto = txtSalario.getText(); 
+	  //  float valor = Float.parseFloat(texto); 
+	    //this.txtSalario = valor;
+	    this.txtSalario.setText(txtSalario);
 	}
-
+	
+	
 	public JTextField getTxtComissao() {
 		return txtComissao;
 	}
 
 	public void setTxtComissao(String txtComissao) {
-		this.txtComissao.setText(txtComissao);;
+	    this.txtComissao.setText(txtComissao);
 	}
 
 
@@ -125,6 +129,7 @@ public class TelaAlterarFuncionario {
 		panel.add(lblSalario);
 
 		txtIdFuncionario = new JTextField();
+		txtIdFuncionario.setEditable(false);
 		txtIdFuncionario.setColumns(10);
 		txtIdFuncionario.setBounds(152, 52, 249, 23);
 		panel.add(txtIdFuncionario);

@@ -123,6 +123,7 @@ public class TelaAlterarCliente {
 		panel.add(lblTelefone);
 
 		txtIdCliente = new JTextField();
+		txtIdCliente.setEditable(false);
 		txtIdCliente.setColumns(10);
 		txtIdCliente.setBounds(155, 50, 249, 23);
 		panel.add(txtIdCliente);

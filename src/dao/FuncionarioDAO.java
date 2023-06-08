@@ -117,13 +117,13 @@ public class FuncionarioDAO {
   	//Método update
   	public void Alterar(Funcionario f) {
   		PreparedStatement stmt;
-  		String sql = "UPDATE tb_funcionario SET id_funcionario = ?, nm_funcionario = ?, salario = ?, comissao = ? WHERE id_funcionario = ?";
+  		String sql = "UPDATE tb_funcionario SET nm_funcionario = ?, salario = ?, comissao = ? WHERE id_funcionario = ?";
   		try {
   			stmt = con.prepareStatement(sql);
-  			stmt.setInt(1, f.getIdFuncionario());
-  			stmt.setString(2, f.getNome());
-  			stmt.setFloat(3, f.getSalario());
-  			stmt.setFloat(4, f.getComissao());
+  			stmt.setString(1, f.getNome());
+  			stmt.setFloat(2, f.getSalario());
+  			stmt.setFloat(3, f.getComissao());
+  			stmt.setInt(4, f.getIdFuncionario());
   			stmt.executeUpdate();
   			JOptionPane.showMessageDialog(null, "Funcionario Alterado!");
   			

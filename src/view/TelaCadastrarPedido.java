@@ -13,10 +13,12 @@ import javax.swing.JTextField;
 
 import dao.PedidoDAO;
 import dominio.Pedido;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TelaCadastrarPedido {
 
-	private JFrame frame;
+	private JFrame frmCadastroDePedidos;
 	private JTextField inputIdFuncionario;
 	private JTextField inputIdCliente;
 	private JTextField inputIdPedido;
@@ -29,7 +31,7 @@ public class TelaCadastrarPedido {
 			public void run() {
 				try {
 					TelaCadastrarPedido window = new TelaCadastrarPedido();
-					window.frame.setVisible(true);
+					window.frmCadastroDePedidos.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,36 +50,41 @@ public class TelaCadastrarPedido {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("Cadastro de Pedido");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmCadastroDePedidos = new JFrame();
+		frmCadastroDePedidos.getContentPane().setBackground(new Color(128, 128, 255));
+		frmCadastroDePedidos.setTitle("Cadastro de Pedidos");
+		frmCadastroDePedidos.setBounds(100, 100, 450, 300);
+		frmCadastroDePedidos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmCadastroDePedidos.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(10, 11, 414, 239);
-		frame.getContentPane().add(panel);
+		frmCadastroDePedidos.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lblCadastroPedido = new JLabel("Cadastro Pedido");
-		lblCadastroPedido.setBounds(10, 0, 108, 34);
+		JLabel lblCadastroPedido = new JLabel("Cadastro de Pedidos");
+		lblCadastroPedido.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblCadastroPedido.setBounds(10, 13, 139, 34);
 		panel.add(lblCadastroPedido);
 
 		JLabel lblIdFuncionario = new JLabel("Digite o id do funcionário:");
-		lblIdFuncionario.setBounds(10, 32, 150, 14);
+		lblIdFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdFuncionario.setBounds(20, 74, 150, 14);
 		panel.add(lblIdFuncionario);
 
 		inputIdFuncionario = new JTextField();
-		inputIdFuncionario.setBounds(10, 57, 139, 20);
+		inputIdFuncionario.setBounds(196, 73, 139, 20);
 		panel.add(inputIdFuncionario);
 		inputIdFuncionario.setColumns(10);
 
 		JLabel lblIdCliente = new JLabel("Digite o id do Cliente:");
-		lblIdCliente.setBounds(10, 88, 139, 14);
+		lblIdCliente.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdCliente.setBounds(20, 119, 139, 14);
 		panel.add(lblIdCliente);
 
 		inputIdCliente = new JTextField();
-		inputIdCliente.setBounds(10, 113, 139, 20);
+		inputIdCliente.setBounds(196, 118, 139, 20);
 		panel.add(inputIdCliente);
 		inputIdCliente.setColumns(10);
 
@@ -87,6 +94,7 @@ public class TelaCadastrarPedido {
 		panel.add(inputIdPedido).setVisible(false);;
 
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idPedido = 0;
@@ -96,16 +104,16 @@ public class TelaCadastrarPedido {
 				int idFuncionario = Integer.parseInt(inputIdFuncionario.getText());
 				Pedido p = new Pedido(idPedido, valorTotal, dataPedido, idCliente, idFuncionario);
 				PedidoDAO pd = new PedidoDAO();
-				pd.create(p, frame);
-				frame.dispose();
+				pd.create(p, frmCadastroDePedidos);
+				frmCadastroDePedidos.dispose();
 			}
 		});
-		btnCadastrar.setBounds(10, 156, 139, 23);
+		btnCadastrar.setBounds(20, 176, 139, 23);
 		panel.add(btnCadastrar);
 	}
 	
 	public JFrame getFrame() {
-		return frame;
+		return frmCadastroDePedidos;
 	}
 
 }

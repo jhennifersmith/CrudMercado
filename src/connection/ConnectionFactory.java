@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ConnectionFactory {
 	private static String usuario = "root";
-	private static String senha = "itix.123";
+	private static String senha = "root";
 	private static String url="jdbc:mysql://localhost:3306/mercado" ;
 	
 	//Atributo que garante a criação de uma única instância

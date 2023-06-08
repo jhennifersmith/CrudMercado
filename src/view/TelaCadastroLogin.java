@@ -1,28 +1,25 @@
 package view;
 
-import java.awt.EventQueue;
-import dominio.Login;
-import util.Criptografia;
-import dao.LoginDAO;
-
-import javax.swing.JFrame;
 import java.awt.Color;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
-import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class TelaLogin {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import dao.LoginDAO;
+import dominio.Login;
+
+public class TelaCadastroLogin {
 
 	private JFrame frmLogin;
 	private JTextField txtUser;
@@ -35,7 +32,7 @@ public class TelaLogin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLogin window = new TelaLogin();
+					TelaCadastroLogin window = new TelaCadastroLogin();
 					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +44,7 @@ public class TelaLogin {
 	/**
 	 * Create the application.
 	 */
-	public TelaLogin() {
+	public TelaCadastroLogin() {
 		initialize();
 	}
 
@@ -56,7 +53,8 @@ public class TelaLogin {
 	 */
 	private void initialize() {
 		frmLogin = new JFrame();
-		frmLogin.setTitle("Login");
+		frmLogin.setBounds(100, 100, 450, 300);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imagens/logo.png")));
 		frmLogin.getContentPane().setBackground(new Color(128, 128, 255));
 		frmLogin.getContentPane().setLayout(null);
@@ -77,12 +75,7 @@ public class TelaLogin {
 		lblSenha.setBounds(10, 83, 51, 30);
 		panel.add(lblSenha);
 		
-		txtUser = new JTextField();
-		txtUser.setBounds(64, 36, 164, 30);
-		panel.add(txtUser);
-		txtUser.setColumns(10);
-		
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("Cadastre-se");
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,21 +83,17 @@ public class TelaLogin {
 				String pass = String.valueOf(pswPass.getPassword()); 
 				Login l = new Login(0, user, pass);
 				LoginDAO ld = new LoginDAO();
-				ld.autenticar(l, frmLogin);
+				ld.create(l, frmLogin);
 			}
 		});
 		btnLogin.setBounds(135, 146, 106, 30);
 		panel.add(btnLogin);
 		
-		pswPass = new JPasswordField();
-		pswPass.setBounds(64, 84, 164, 30);
-		panel.add(pswPass);
-		
-		JButton btnCadastrar = new JButton("Cadastre-se");
+		JButton btnCadastrar = new JButton("Login");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroLogin tl = new TelaCadastroLogin();
-				tl.frmLogin().setVisible(true);
+				TelaLogin tl = new TelaLogin();
+				tl.getFrmLogin().setVisible(true);
 				frmLogin.dispose();
 			}
 		});
@@ -112,9 +101,18 @@ public class TelaLogin {
 		btnCadastrar.setBounds(10, 146, 102, 30);
 		panel.add(btnCadastrar);
 		
-		JLabel lblCadastroProduto = new JLabel("Login:");
+		txtUser = new JTextField();
+		txtUser.setColumns(10);
+		txtUser.setBounds(77, 42, 164, 30);
+		panel.add(txtUser);
+		
+		pswPass = new JPasswordField();
+		pswPass.setBounds(77, 85, 164, 30);
+		panel.add(pswPass);
+		
+		JLabel lblCadastroProduto = new JLabel("Cadastre-se");
 		lblCadastroProduto.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCadastroProduto.setBounds(108, -8, 51, 34);
+		lblCadastroProduto.setBounds(87, 0, 88, 34);
 		panel.add(lblCadastroProduto);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -124,9 +122,11 @@ public class TelaLogin {
 		frmLogin.setBackground(new Color(128, 128, 255));
 		frmLogin.setBounds(100, 100, 279, 413);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
-	public JFrame getFrmLogin() {
+	public JFrame frmLogin() {
 		return frmLogin;
 	}
+
 }

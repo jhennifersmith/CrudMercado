@@ -128,7 +128,7 @@ public class TelaConsultaCliente {
 		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id =  (int) table.getValueAt(table.getSelectedRow(), 3);
+				int id =  (int) table.getValueAt(table.getSelectedRow(),0);
 				ClienteDAO pd = new ClienteDAO();
 				pd.excluir(id);
 				atualizaBusca();

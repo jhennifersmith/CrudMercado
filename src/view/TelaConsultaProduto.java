@@ -14,10 +14,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import dao.ProdutoDAO;
 import dominio.Produto;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TelaConsultaProduto {
 
-	private JFrame frame;
+	private JFrame frmConsultarProdutos;
 	private JTextField txtDesc;
 	private JTable table;
 
@@ -29,7 +31,7 @@ public class TelaConsultaProduto {
 			public void run() {
 				try {
 					TelaConsultaProduto window = new TelaConsultaProduto();
-					window.frame.setVisible(true);
+					window.frmConsultarProdutos.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,17 +59,22 @@ public class TelaConsultaProduto {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 343);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmConsultarProdutos = new JFrame();
+		frmConsultarProdutos.setTitle("Consultar Produtos");
+		frmConsultarProdutos.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 13));
+		frmConsultarProdutos.getContentPane().setBackground(new Color(128, 128, 255));
+		frmConsultarProdutos.setBounds(100, 100, 450, 343);
+		frmConsultarProdutos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmConsultarProdutos.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(0, 0, 434, 81);
-		frame.getContentPane().add(panel);
+		frmConsultarProdutos.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Descrição:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setBounds(10, 24, 67, 14);
 		panel.add(lblNewLabel);
 
@@ -77,6 +84,7 @@ public class TelaConsultaProduto {
 		txtDesc.setColumns(10);
 
 		JButton btnBuscaPorDescricao = new JButton("Filtrar");
+		btnBuscaPorDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBuscaPorDescricao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atualizaBusca();
@@ -86,8 +94,9 @@ public class TelaConsultaProduto {
 		panel.add(btnBuscaPorDescricao);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(128, 128, 255));
 		panel_1.setBounds(0, 87, 434, 217);
-		frame.getContentPane().add(panel_1);
+		frmConsultarProdutos.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -102,6 +111,7 @@ public class TelaConsultaProduto {
 		table.setAutoCreateRowSorter(true);
 
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = (int) table.getValueAt(table.getSelectedRow(), 3);
@@ -114,6 +124,7 @@ public class TelaConsultaProduto {
 		panel_1.add(btnExcluir);
 
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String descricao = (String) table.getValueAt(table.getSelectedRow(), 0);
@@ -134,6 +145,6 @@ public class TelaConsultaProduto {
 	}
 
 	public JFrame getFrame() {
-		return frame;
+		return frmConsultarProdutos;
 	}
 }

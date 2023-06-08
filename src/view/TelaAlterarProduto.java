@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TelaAlterarProduto {
 
@@ -98,38 +100,43 @@ public class TelaAlterarProduto {
 		frmTelaAlterar.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(0, 0, 434, 261);
 		frmTelaAlterar.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Descrição:");
-		lblNewLabel.setBounds(10, 37, 77, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(21, 104, 77, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblCdigoDeBarras = new JLabel("Código de Barras:");
-		lblCdigoDeBarras.setBounds(10, 74, 104, 14);
+		lblCdigoDeBarras.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCdigoDeBarras.setBounds(21, 139, 104, 14);
 		panel.add(lblCdigoDeBarras);
 
 		JLabel lblCusto = new JLabel("Custo:");
-		lblCusto.setBounds(10, 113, 77, 14);
+		lblCusto.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCusto.setBounds(21, 174, 77, 14);
 		panel.add(lblCusto);
 
 		txtDesc = new JTextField();
-		txtDesc.setBounds(115, 34, 289, 20);
+		txtDesc.setBounds(148, 103, 261, 20);
 		panel.add(txtDesc);
 		txtDesc.setColumns(10);
 
 		txtCodBarras = new JTextField();
 		txtCodBarras.setColumns(10);
-		txtCodBarras.setBounds(115, 71, 289, 20);
+		txtCodBarras.setBounds(148, 138, 261, 20);
 		panel.add(txtCodBarras);
 
 		txtPreco = new JTextField();
 		txtPreco.setColumns(10);
-		txtPreco.setBounds(115, 110, 289, 20);
+		txtPreco.setBounds(148, 173, 261, 20);
 		panel.add(txtPreco);
 
 		JButton btnAlteraProduto = new JButton("Alterar");
+		btnAlteraProduto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAlteraProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = Integer.parseInt(txtId.getText());
@@ -148,12 +155,18 @@ public class TelaAlterarProduto {
 
 		txtId = new JTextField();
 		txtId.setEditable(false);
-		txtId.setBounds(115, 187, 86, 20);
+		txtId.setBounds(148, 65, 261, 20);
 		panel.add(txtId);
 		txtId.setColumns(10);
 
-		JLabel lblId = new JLabel("Id:");
-		lblId.setBounds(10, 190, 77, 14);
+		JLabel lblId = new JLabel("Identificador:");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblId.setBounds(21, 66, 77, 14);
 		panel.add(lblId);
+		
+		JLabel lblAlteraoDeProduto = new JLabel("Alteração de Produto");
+		lblAlteraoDeProduto.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblAlteraoDeProduto.setBounds(10, 10, 165, 34);
+		panel.add(lblAlteraoDeProduto);
 	}
 }

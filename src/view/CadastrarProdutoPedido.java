@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 
 import dao.ProdutoPedidoDAO;
 import dominio.ProdutoPedido;
+import java.awt.Color;
+import java.awt.Font;
 
 public class CadastrarProdutoPedido {
 
@@ -57,18 +59,21 @@ public class CadastrarProdutoPedido {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(128, 128, 255));
 		frame.setTitle("Cadastro de Produto Pedido");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(10, 11, 414, 239);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblCadastroProdutoPedido = new JLabel("Cadastro  de produto no pedido");
-		lblCadastroProdutoPedido.setBounds(107, 11, 264, 34);
+		lblCadastroProdutoPedido.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblCadastroProdutoPedido.setBounds(79, 10, 264, 34);
 		panel.add(lblCadastroProdutoPedido);
 
 		inputId = new JTextField();
@@ -76,7 +81,8 @@ public class CadastrarProdutoPedido {
 		panel.add(inputId).setVisible(false);;
 		inputId.setColumns(10);
 
-		JLabel lblIdPedido = new JLabel("Id do pedido:");
+		JLabel lblIdPedido = new JLabel("Digite o Id do pedido:");
+		lblIdPedido.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblIdPedido.setBounds(20, 124, 139, 14);
 		panel.add(lblIdPedido);
 
@@ -87,6 +93,7 @@ public class CadastrarProdutoPedido {
 		txtIdPedido.setColumns(10);
 
 		JLabel lblIdProduto = new JLabel("Digite o id do produto:");
+		lblIdProduto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblIdProduto.setBounds(20, 56, 139, 14);
 		panel.add(lblIdProduto);
 
@@ -96,7 +103,8 @@ public class CadastrarProdutoPedido {
 		inputIdProduto.setColumns(10);
 
 		JLabel lblQuantidade = new JLabel("Digite a quantidade: ");
-		lblQuantidade.setBounds(218, 56, 150, 14);
+		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblQuantidade.setBounds(218, 56, 186, 14);
 		panel.add(lblQuantidade);
 
 		inputQuantidade = new JTextField();
@@ -105,6 +113,7 @@ public class CadastrarProdutoPedido {
 		inputQuantidade.setColumns(10);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idProdutoPedido = 0;
@@ -118,7 +127,7 @@ public class CadastrarProdutoPedido {
 				frame.dispose();
 			}
 		});
-		btnCadastrar.setBounds(146, 191, 110, 23);
+		btnCadastrar.setBounds(20, 191, 110, 23);
 		panel.add(btnCadastrar);
 
 	}
