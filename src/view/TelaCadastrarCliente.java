@@ -20,7 +20,6 @@ public class TelaCadastrarCliente {
 
 	private JFrame frmCadastroCliente;
 	private JTextField txtTelefone;
-	private JTextField txtIdCliente;
 	private JTextField txtNome;
 	private JTextField txtEndereco;
 
@@ -65,18 +64,8 @@ public class TelaCadastrarCliente {
 
 		JLabel lblCadastroProduto = new JLabel("Cadastro de Cliente");
 		lblCadastroProduto.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCadastroProduto.setBounds(10, 0, 139, 34);
+		lblCadastroProduto.setBounds(20, 21, 139, 34);
 		panel.add(lblCadastroProduto);
-
-		JLabel lblIdCliente = new JLabel("Digite o id do cliente:");
-		lblIdCliente.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdCliente.setBounds(20, 44, 129, 14);
-		panel.add(lblIdCliente);
-
-		txtIdCliente = new JTextField();
-		txtIdCliente.setColumns(10);
-		txtIdCliente.setBounds(192, 38, 211, 23);
-		panel.add(txtIdCliente);
 
 		JLabel lblNome = new JLabel("Digite o nome completo:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -90,7 +79,7 @@ public class TelaCadastrarCliente {
 		
 		JLabel lblTelefone = new JLabel("Digite o telefone:");
 		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTelefone.setBounds(20, 127, 128, 14);
+		lblTelefone.setBounds(20, 124, 128, 14);
 		panel.add(lblTelefone);
 
 		txtTelefone = new JTextField();
@@ -112,7 +101,7 @@ public class TelaCadastrarCliente {
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer idCliente = Integer.parseInt(txtIdCliente.getText());
+				Integer idCliente = 0; //Integer.parseInt(txtIdCliente.getText());
 				String nome = txtNome.getText();
 				String telefone = txtTelefone.getText();
 				String endereco = txtEndereco.getText();

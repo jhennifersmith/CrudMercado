@@ -119,13 +119,13 @@ public class ClienteDAO {
   	//Método update
   	public void Alterar(Cliente c) {
   		PreparedStatement stmt;
-  		String sql = "UPDATE tb_cliente SET id_cliente = ?, nm_cliente = ?, telefone = ?, endereco = ? WHERE id_cliente = ?";
+  		String sql = "UPDATE tb_cliente SET nm_cliente = ?, telefone = ?, endereco = ? WHERE id_cliente = ?";
   		try {
   			stmt = con.prepareStatement(sql);
-  			stmt.setInt(1, c.getIdCliente());
-  			stmt.setString(2, c.getNome());
-  			stmt.setString(3, c.getTelefone());
-  			stmt.setString(4, c.getEndereco());
+  			stmt.setString(1, c.getNome());
+  			stmt.setString(2, c.getTelefone());
+  			stmt.setString(3, c.getEndereco());
+  			stmt.setInt(4, c.getIdCliente());
   			stmt.executeUpdate();
   			JOptionPane.showMessageDialog(null, "Cliente Alterado!");
   			

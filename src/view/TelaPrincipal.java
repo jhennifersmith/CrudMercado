@@ -1,12 +1,9 @@
 package view;
 
 import java.awt.EventQueue;
-import dominio.Produto;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import dao.ProdutoDAO;
 
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -17,12 +14,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.JButton;
 
 public class TelaPrincipal {
 
@@ -85,10 +82,6 @@ public class TelaPrincipal {
 		
 		JMenuItem mntmConsultaProd;
 		
-		JMenuItem mntmAlteraProd;
-		
-		JMenuItem mntmExcluirProd;
-		
 		JMenu mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
 		
@@ -103,7 +96,7 @@ public class TelaPrincipal {
 		mnCliente.add(mntmCadastraC);
 		
 		JMenuItem mntmConsultaC;
-		mntmConsultaC = new JMenuItem("Consultar");
+		mntmConsultaC = new JMenuItem("Consultar, Alterar, Excluir");
 		mntmConsultaC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaConsultaCliente tcc = new TelaConsultaCliente();
@@ -111,26 +104,6 @@ public class TelaPrincipal {
 			}
 		});
 		mnCliente.add(mntmConsultaC);
-		
-		JMenuItem mntmAlterarC;
-		mntmAlterarC = new JMenuItem("Alterar");
-		mntmAlterarC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaCliente tcc = new TelaConsultaCliente();
-				tcc.getFrmConsultaCliente().setVisible(true);
-			}
-		});
-		mnCliente.add(mntmAlterarC);
-		
-		JMenuItem mntmExcluirC;
-		mntmExcluirC = new JMenuItem("Excluir");
-		mntmExcluirC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaCliente tcc = new TelaConsultaCliente();
-				tcc.getFrmConsultaCliente().setVisible(true);
-			}
-		});
-		mnCliente.add(mntmExcluirC);
 		
 		JMenu mnFuncionario = new JMenu("Funcionario");
 		menuBar.add(mnFuncionario);
@@ -146,7 +119,7 @@ public class TelaPrincipal {
 		mnFuncionario.add(mntmCadastraF);
 		
 		JMenuItem mntmConsultaF;
-		mntmConsultaF = new JMenuItem("Consultar");
+		mntmConsultaF = new JMenuItem("Consultar, Alterar, Excluir");
 		mntmConsultaF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaConsultaFuncionario tcf = new TelaConsultaFuncionario();
@@ -155,60 +128,106 @@ public class TelaPrincipal {
 		});
 		mnFuncionario.add(mntmConsultaF);
 		
-		JMenuItem mntmAlterarF;
-		mntmAlterarF = new JMenuItem("Alterar");
-		mntmAlterarF.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaFuncionario tcf = new TelaConsultaFuncionario();
-				tcf.getFrmConsultaFuncionario().setVisible(true);
-			}
-		});
-		mnFuncionario.add(mntmAlterarF);
-		
-		JMenuItem mntmExcluirF;
-		mntmExcluirF = new JMenuItem("Excluir");
-		mntmExcluirF.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaFuncionario tcf = new TelaConsultaFuncionario();
-				tcf.getFrmConsultaFuncionario().setVisible(true);
-			}
-		});
-		mnFuncionario.add(mntmExcluirF);
-		
 		JMenu mnProduto = new JMenu("Produto");
 		menuBar.add(mnProduto);
 		mntmCadastraProd = new JMenuItem("Cadastrar");
 		mntmCadastraProd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroProduto tcp = new TelaCadastroProduto();
-				tcp.frame().setVisible(true);
+				tcp.getFrame().setVisible(true);
 			}
 		});
 		mnProduto.add(mntmCadastraProd);
-		mntmConsultaProd = new JMenuItem("Consultar");
+		mntmConsultaProd = new JMenuItem("Consultar, Alterar, Excluir");
+		mntmConsultaProd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaProduto tcp = new TelaConsultaProduto();
+				tcp.getFrame().setVisible(true);
+			}
+		});
 		mnProduto.add(mntmConsultaProd);
-		mntmAlteraProd = new JMenuItem("Alterar");
-		mnProduto.add(mntmAlteraProd);
-		mntmExcluirProd = new JMenuItem("Excluir");
-		mnProduto.add(mntmExcluirProd);
+	
 		
 		JMenu mnPedido = new JMenu("Pedido");
 		menuBar.add(mnPedido);
 		
 		JMenuItem mntmCadastraPed = new JMenuItem("Cadastrar");
+		mntmCadastraPed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastrarPedido tcp = new TelaCadastrarPedido();
+				tcp.getFrame().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmCadastraPed);
 		
-		JMenuItem mntmConsultaPed = new JMenuItem("Consultar");
+		JMenuItem mntmConsultaPed = new JMenuItem("Consultar, Alterar, Excluir");
+		mntmConsultaPed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaPedido tcp = new TelaConsultaPedido();
+				tcp.getFrame().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmConsultaPed);
 		
-		JMenuItem mntmAlterarPed = new JMenuItem("Alterar");
-		mnPedido.add(mntmAlterarPed);
+		JMenu mnLogin = new JMenu("Login");
+		menuBar.add(mnLogin);
 		
-		JMenuItem mntmExcluirPed = new JMenuItem("Excluir");
-		mnPedido.add(mntmExcluirPed);
+		JMenuItem mntmCadastraL = new JMenuItem("Cadastrar");
+		mntmCadastraL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroLogin tcl = new TelaCadastroLogin();
+				tcl.frmLogin().setVisible(true);
+			}
+		});
+		mnLogin.add(mntmCadastraL);
+		
+		JMenuItem mntmConsultaL = new JMenuItem("Consultar, Alterar, Excluir"); 
+		mntmConsultaL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaLogin tcl = new TelaConsultaLogin();
+				tcl.getFrmConsultaLogin().setVisible(true);
+			}
+		});
+		mnLogin.add(mntmConsultaL);
 		
 		JMenu mnSobre = new JMenu("Sobre");
 		menuBar.add(mnSobre);
+		
+		JLabel lblNewLabel = new JLabel("Seja bem-vindo!");
+		lblNewLabel.setBackground(new Color(240, 240, 240));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel.setBounds(23, 45, 157, 22);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nosso programa em Java permite o gerenciamento");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		lblNewLabel_1.setBounds(23, 69, 384, 57);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("de clientes, funcionários, pedidos e produtos,");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		lblNewLabel_2.setBounds(23, 110, 341, 57);
+		panel.add(lblNewLabel_2);
+		JLabel lblNewLabel_3 = new JLabel("que podem estar associados à pedidos.");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		lblNewLabel_3.setBounds(23, 149, 331, 57);
+		panel.add(lblNewLabel_3);
+		JLabel lblNewLabel_4 = new JLabel("Faça login ou cadastre-se para continuar!");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		lblNewLabel_4.setBounds(23, 190, 331, 57);
+		panel.add(lblNewLabel_4);
+		
+		JButton btnCadastrar = new JButton("Login");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaLogin tl = new TelaLogin();
+				tl.getFrmLogin().setVisible(true);
+			}
+		});
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCadastrar.setBounds(290, 241, 89, 25);
+		panel.add(btnCadastrar);
+	
 		
 		mnSobre.addMouseListener(new MouseAdapter() {
 			@Override

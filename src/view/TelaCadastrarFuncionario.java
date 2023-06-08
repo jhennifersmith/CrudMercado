@@ -19,7 +19,6 @@ public class TelaCadastrarFuncionario {
 
 	private JFrame frmCadastroFuncionario;
 	private JTextField txtNome;
-	private JTextField txtIdFuncionario;
 	private JTextField txtSalario;
 	private JTextField txtComissao;
 
@@ -64,18 +63,8 @@ public class TelaCadastrarFuncionario {
 
 		JLabel lblCadastroProduto = new JLabel("Cadastro de Funcionario");
 		lblCadastroProduto.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCadastroProduto.setBounds(10, 0, 162, 34);
+		lblCadastroProduto.setBounds(20, 24, 162, 34);
 		panel.add(lblCadastroProduto);
-
-		JLabel lblIdFuncionario = new JLabel("Digite o id do Funcionario:");
-		lblIdFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdFuncionario.setBounds(20, 44, 152, 14);
-		panel.add(lblIdFuncionario);
-
-		txtIdFuncionario = new JTextField();
-		txtIdFuncionario.setColumns(10);
-		txtIdFuncionario.setBounds(192, 38, 211, 23);
-		panel.add(txtIdFuncionario);
 
 		JLabel lblNome = new JLabel("Digite o nome completo:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -111,7 +100,7 @@ public class TelaCadastrarFuncionario {
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer idFuncionario = Integer.parseInt(txtIdFuncionario.getText());
+				Integer idFuncionario = 0; //Integer.parseInt(txtIdFuncionario.getText());
 				String nome = txtNome.getText();
 				Float salario = Float.parseFloat(txtSalario.getText());
 				Float comissao = Float.parseFloat(txtComissao.getText());

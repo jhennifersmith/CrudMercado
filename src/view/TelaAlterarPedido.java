@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TelaAlterarPedido {
 
@@ -101,24 +103,28 @@ public class TelaAlterarPedido {
 		frmTelaAlterar.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(0, 0, 434, 261);
 		frmTelaAlterar.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lblIdCliente = new JLabel("Id Cliente:");
-		lblIdCliente.setBounds(10, 37, 77, 14);
+		JLabel lblIdCliente = new JLabel("Identificador do Cliente:");
+		lblIdCliente.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdCliente.setBounds(27, 121, 153, 14);
 		panel.add(lblIdCliente);
 
-		JLabel lblIdFuncionario = new JLabel("Id funcionario:");
-		lblIdFuncionario.setBounds(10, 74, 104, 14);
+		JLabel lblIdFuncionario = new JLabel("Identificador do funcionario:");
+		lblIdFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdFuncionario.setBounds(27, 156, 186, 14);
 		panel.add(lblIdFuncionario);
 
 		txtIdFuncionario = new JTextField();
 		txtIdFuncionario.setColumns(10);
-		txtIdFuncionario.setBounds(124, 71, 289, 20);
+		txtIdFuncionario.setBounds(228, 155, 165, 20);
 		panel.add(txtIdFuncionario);
 
 		JButton btnAlteraProduto = new JButton("Alterar");
+		btnAlteraProduto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAlteraProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = Integer.parseInt(txtId.getText());
@@ -133,22 +139,28 @@ public class TelaAlterarPedido {
 				frmTelaAlterar.dispose();
 			}
 		});
-		btnAlteraProduto.setBounds(300, 227, 104, 23);
+		btnAlteraProduto.setBounds(289, 206, 104, 23);
 		panel.add(btnAlteraProduto);
 
 		txtId = new JTextField();
 		txtId.setEditable(false);
-		txtId.setBounds(115, 187, 86, 20);
+		txtId.setBounds(228, 85, 165, 20);
 		panel.add(txtId);
 		txtId.setColumns(10);
 
-		JLabel lblId = new JLabel("Id:");
-		lblId.setBounds(10, 190, 77, 14);
+		JLabel lblId = new JLabel("Identificador do produto:");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblId.setBounds(27, 86, 180, 14);
 		panel.add(lblId);
 
 		txtIdCliente = new JTextField();
 		txtIdCliente.setColumns(10);
-		txtIdCliente.setBounds(124, 34, 289, 20);
+		txtIdCliente.setBounds(228, 120, 165, 20);
 		panel.add(txtIdCliente);
+		
+		JLabel lblAlteraoDePedido = new JLabel("Alteração de Pedido");
+		lblAlteraoDePedido.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblAlteraoDePedido.setBounds(10, 26, 165, 34);
+		panel.add(lblAlteraoDePedido);
 	}
 }

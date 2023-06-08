@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TelaAlterarProdutoPedido {
 
@@ -109,26 +111,29 @@ public class TelaAlterarProdutoPedido {
 		frmTelaAlterar.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(0, 0, 434, 261);
 		frmTelaAlterar.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblIdProduto = new JLabel("Id Produto:");
-		lblIdProduto.setBounds(10, 37, 77, 14);
+		lblIdProduto.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdProduto.setBounds(28, 102, 77, 14);
 		panel.add(lblIdProduto);
 
 		JLabel lblQuantidade = new JLabel("Quantidade:");
-		lblQuantidade.setBounds(10, 74, 104, 14);
+		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblQuantidade.setBounds(28, 144, 104, 14);
 		panel.add(lblQuantidade);
 
 		txtIdProduto = new JTextField();
-		txtIdProduto.setBounds(115, 34, 289, 20);
+		txtIdProduto.setBounds(142, 101, 130, 20);
 		panel.add(txtIdProduto);
 		txtIdProduto.setColumns(10);
 
 		txtQuantidade = new JTextField();
 		txtQuantidade.setColumns(10);
-		txtQuantidade.setBounds(115, 71, 289, 20);
+		txtQuantidade.setBounds(142, 143, 130, 20);
 		panel.add(txtQuantidade);
 		
 		txtIdPedido = new JTextField();
@@ -144,6 +149,7 @@ public class TelaAlterarProdutoPedido {
 		panel.add(txtValorCotado).setVisible(false);;
 
 		JButton btnAlteraProduto = new JButton("Alterar");
+		btnAlteraProduto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAlteraProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = Integer.parseInt(txtId.getText());
@@ -158,17 +164,23 @@ public class TelaAlterarProdutoPedido {
 				frmTelaAlterar.dispose();
 			}
 		});
-		btnAlteraProduto.setBounds(300, 227, 104, 23);
+		btnAlteraProduto.setBounds(28, 202, 104, 23);
 		panel.add(btnAlteraProduto);
 
 		txtId = new JTextField();
 		txtId.setEditable(false);
-		txtId.setBounds(115, 187, 86, 20);
+		txtId.setBounds(142, 54, 130, 19);
 		panel.add(txtId);
 		txtId.setColumns(10);
 
-		JLabel lblId = new JLabel("Id:");
-		lblId.setBounds(10, 190, 77, 14);
+		JLabel lblId = new JLabel("Identificador:");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblId.setBounds(28, 55, 77, 14);
 		panel.add(lblId);
+		
+		JLabel lblAlteraoDeCliente = new JLabel("Alteração de Produto no Pedido");
+		lblAlteraoDeCliente.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblAlteraoDeCliente.setBounds(10, 10, 223, 34);
+		panel.add(lblAlteraoDeCliente);
 	}
 }

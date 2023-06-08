@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 
 import dao.PedidoDAO;
 import dominio.Pedido;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TelaConsultaPedido {
 
@@ -79,16 +81,19 @@ public class TelaConsultaPedido {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(128, 128, 255));
 		frame.setBounds(100, 100, 450, 343);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(0, 0, 434, 81);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Id do pedido:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setBounds(10, 24, 119, 14);
 		panel.add(lblNewLabel);
 
@@ -98,6 +103,7 @@ public class TelaConsultaPedido {
 		txtId.setColumns(10);
 
 		JButton btnBuscaPorId = new JButton("Filtrar");
+		btnBuscaPorId.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBuscaPorId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atualizaBusca();
@@ -107,6 +113,7 @@ public class TelaConsultaPedido {
 		panel.add(btnBuscaPorId);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(128, 128, 255));
 		panel_1.setBounds(0, 87, 434, 217);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -123,6 +130,7 @@ public class TelaConsultaPedido {
 		table.setAutoCreateRowSorter(true);
 
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = (int) table.getValueAt(table.getSelectedRow(), 0);
@@ -135,6 +143,7 @@ public class TelaConsultaPedido {
 		panel_1.add(btnExcluir);
 
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = (int) table.getValueAt(table.getSelectedRow(), 0);
@@ -152,6 +161,7 @@ public class TelaConsultaPedido {
 		panel_1.add(btnAlterar);
 		
 		JButton btnAlterarProdutos = new JButton("Alterar produtos do pedido");
+		btnAlterarProdutos.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAlterarProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = (int) table.getValueAt(table.getSelectedRow(), 0);
